@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/task_management_db
+    username: administrator
+    password: Administrator1234!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  mail:
+    host: localhost
+    port: 1025
+    username: user
+    password: pass
+    properties:
+      mail:
+        smtp:
+         trust: "*"
+        auth: true
+        starttls:
+          enable: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false
+
+application:
+  security:
+    jwt:
+      secret-key: 4C316E35275B7824224737533E6E29615A543D783662272043414D3345
+      expiration: 86400000
+  mail:
+    frontend:
+      activation-url: http://localhost:4200/activate-account
+server:
+  port: 8080
