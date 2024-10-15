@@ -1,0 +1,25 @@
+.btn-to-do {
+  background-color: #6c757d !important;
+  color: #fff !important;
+}
+
+.btn-in-progress {
+  background-color: #ffc107 !important;
+  color: #fff !important;
+}
+
+.btn-done {
+  background-color: #28a745 !important;
+  color: #fff !important;
+}
+
+.btn-default {
+  background-color: transparent;
+  color: #6c757d;
+}
+
+.btn-group {
+  .btn {
+    //margin-right: 0.5rem;
+  }
+}

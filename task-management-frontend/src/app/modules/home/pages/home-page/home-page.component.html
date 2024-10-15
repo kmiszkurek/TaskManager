@@ -1,0 +1,23 @@
+<h3>Welcome</h3>
+<hr>
+<div class="d-flex justify-content-start gap-2 flex-wrap">
+<!--  <span *ngFor="let notifications of notificationResponse.content"> {{notifications.message}} </span>-->
+</div>
+
+<h4>Project with close deadline</h4>
+<div *ngIf="endingProjects.length > 0" class="d-flex justify-content-start gap-2 flex-wrap">
+  <app-project-card [project]="project"  *ngFor="let project of endingProjects" class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{ project.name }}</h5>
+      <p class="card-text">Termin: {{ project.endDate | date:"dd.MM.yyyy" }}</p>
+      <a [routerLink]="['/projects', project.id]" class="btn btn-primary">Show Projects</a>
+    </div>
+  </app-project-card>
+</div>
+<div *ngIf="endingProjects.length === 0">
+  <p>There is no ending projects</p>
+</div>
+
+<hr>
+
+

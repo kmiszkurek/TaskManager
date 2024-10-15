@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>Create New Project</h2>
+
+  <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+    <div class="form-group mt-3">
+      <label for="name">Project Name</label>
+      <input id="name" formControlName="name" type="text" class="form-control"/>
+      <div *ngIf="projectForm.controls['name'].invalid && projectForm.controls['name'].touched">
+        Name is required.
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description" class="form-control"></textarea>
+      <div *ngIf="projectForm.controls['description'].invalid && projectForm.controls['description'].touched">
+        Description is required.
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="startDate">Start Date</label>
+      <input id="startDate" formControlName="startDate" type="date" class="form-control" />
+      <div *ngIf="projectForm.controls['startDate'].invalid && projectForm.controls['startDate'].touched">
+        Start Date is required.
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="endDate">End Date</label>
+      <input id="endDate" formControlName="endDate" type="date" class="form-control" />
+      <div *ngIf="projectForm.controls['endDate'].invalid && projectForm.controls['endDate'].touched">
+        End Date is required.
+      </div>
+    </div>
+
+    <button class="btn btn-success mt-3" type="submit" [disabled]="projectForm.invalid">Create Project</button>
+  </form>
+</div>

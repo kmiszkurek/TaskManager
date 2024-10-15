@@ -1,0 +1,38 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body overflow-scroll">
+    <h5 class="card-title fs-4 text-nowrap fw-bold mb-2">
+      <i class="fa-solid fa-pen-to-square">&nbsp;</i> {{ project.name }}
+    </h5>
+    <h5 class="card-subtitle fs-6 text-secondary mb-1"><i class="fa-solid fa-user-check"></i>&nbsp;{{ project.ownerName }}</h5>
+    <p class="card-text">
+      <i class="fa-solid fa-circle-info"></i>&nbsp;
+      {{ project.description }}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <i class="fa-solid fa-calendar-check"></i>&nbsp;
+      {{ project.startDate | date: 'dd/MM/yyyy' }}
+    </li>
+    <li class="list-group-item">
+      <i class="fa-solid fa-calendar-xmark"></i>&nbsp;
+      {{ project.endDate | date: 'dd/MM/yyyy' }}
+    </li>
+    <li class="list-group-item">
+      <i class="fa-solid fa-bars-progress"></i>&nbsp;
+      <span [ngClass]="getStatusClass(project.status)"> {{ project.status }} </span>
+    </li>
+  </ul>
+  <div class="card-body text-center">
+    <button type="button" class="btn btn-primary me-2" [routerLink]="['/home/assign-task', project.id]">
+      Assign task
+    </button>
+
+    <button type="button" class="btn btn-success me-2" [routerLink]="['/home/edit-project', project.id]">
+      Edit
+    </button>
+
+    <button type="button" class="btn btn-danger" (click)="deleteProject()">
+      Delete
+    </button>
+  </div>
+</div>

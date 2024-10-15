@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import {AuthenticationRequest} from "../../services/models/authentication-request";
 import {NgForOf, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../services/services/authentication.service";
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TokenService} from "../../services/token/token.service";
-import * as CryptoJS from 'crypto-js';
+import {AuthRequest} from "../../services/models/auth-request";
 
 @Component({
   selector: 'app-login',
@@ -22,9 +21,8 @@ import * as CryptoJS from 'crypto-js';
 })
 export class LoginComponent {
 
-  authRequest: AuthenticationRequest = {email: '', password: ''}
+  authRequest: AuthRequest = {email: '', password: ''}
   errorMsg: Array<string> = [];
-  private secretKey = 'my-secret-key';
 
   constructor(
     private router: Router,
@@ -36,15 +34,13 @@ export class LoginComponent {
   login() {
     this.errorMsg = [];
 
-    const data = JSON.stringify(this.authRequest);
-    const encrypted = CryptoJS.AES.encrypt(data, this.secretKey).toString();
-
     this.authService.authenticate({
       body: this.authRequest
     }).subscribe({
       next: (res) => {
         this.tokenService.token = res.token as string;
-        this.router.navigate(['']);
+        localStorage.setItem('fullName', res.fullName as string);
+        this.router.navigate(['home']);
       },
       error: (err) => {
         console.log(err);

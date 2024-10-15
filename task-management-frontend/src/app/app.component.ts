@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import {AuthenticationService} from "./services/services";
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,6 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'task-management-frontend';
+  authService = inject(AuthenticationService);
+
 }

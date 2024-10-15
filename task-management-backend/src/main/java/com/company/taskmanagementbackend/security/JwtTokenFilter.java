@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,9 +16,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class JwtTokenFilter extends OncePerRequestFilter {
@@ -37,14 +40,17 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             return;
         }
 
-        final String authorizationHeader = request.getHeader(AUTHORIZATION);
+        final String authorizationHeader = request.getHeader("Authorization");
         final String jwt;
         final String email;
 
-        if(authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+        log.info("Authorization Header: {}", authorizationHeader);
+        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+            log.info("Brak tokenu lub token nie zaczyna się od 'Bearer '");
             filterChain.doFilter(request, response);
             return;
         }
+
 
         jwt = authorizationHeader.substring(7);
         email = jwtUtil.extractUsername(jwt);

@@ -1,7 +1,7 @@
 package com.company.taskmanagementbackend;
 
-import com.company.taskmanagementbackend.model.Role;
-import com.company.taskmanagementbackend.repository.RoleRepository;
+import com.company.taskmanagementbackend.role.Role;
+import com.company.taskmanagementbackend.role.RoleRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
-@EnableJpaAuditing
+@EnableJpaAuditing(auditorAwareRef = "auditorAware")
 @EnableAsync
 public class TaskManagmentBackendApplication {
 

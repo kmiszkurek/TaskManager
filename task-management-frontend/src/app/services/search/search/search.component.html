@@ -1,0 +1,21 @@
+<form class="d-flex gap-2 align-items-center" role="search">
+
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ searchPrefix }}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="prefixDropdown">
+        <button class="dropdown-item" (click)="setPrefix('@')">&#64;</button>
+        <button class="dropdown-item" (click)="setPrefix('#')">#</button>
+        <button class="dropdown-item" (click)="setPrefix('&')">&</button>
+      </div>
+    </div>
+    <input type="text" class="form-control" placeholder="{{ placeholderText }}" aria-label="Search" [(ngModel)]="searchTerm" name="searchTerm">
+    <button class="btn btn-outline-success" type="button" (click)="performSearch()">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+
+
+</form>

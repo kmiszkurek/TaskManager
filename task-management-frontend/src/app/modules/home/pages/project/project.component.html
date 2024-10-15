@@ -1,0 +1,108 @@
+
+<button class="btn btn-primary" (click)="createProject()">Create Project</button>
+<div
+  *ngIf="message"
+  class="alert"
+  [class.alert-danger] = "level==='error'"
+  [class.alert-success] = "level==='success'"
+  role="alert"
+>
+  <p>{{ message }}</p>
+</div>
+
+<hr>
+
+<!--<div class="d-flex justify-content-start gap-2 flex-wrap">-->
+<!--  <app-project-card-->
+<!--    *ngFor="let project of projectResponse.content"-->
+<!--    [project]="project"-->
+<!--  >-->
+<!--  </app-project-card>-->
+<!--</div>-->
+
+<div *ngIf="filteredProjects.length > 0" class="d-flex justify-content-start gap-2 flex-wrap">
+  <app-project-card
+    *ngFor="let project of filteredProjects"
+    [project]="project"
+    class="card"
+    style="width: 18rem;"
+  >
+    <div class="card-body">
+      <h5 class="card-title">{{ project.name ?? 'Unnamed Project' }}</h5> <!-- Safe check here -->
+      <p class="card-text">Termin: {{ project.endDate | date:"dd.MM.yyyy" }}</p>
+      <a [routerLink]="['/projects', project.id]" class="btn btn-primary">Show Projects</a>
+    </div>
+  </app-project-card>
+</div>
+
+<div *ngIf="filteredProjects.length === 0">
+  <p>No projects found.</p>
+</div>
+
+
+
+
+<div class="fixed-bottom">
+  <div class="d-flex justify-content-center mt-3">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a
+            (click)="goToFirstPage()"
+            class="page-link"
+            href="javascript:void(0)"
+            aria-label="Previous"
+            [class.disabled]="page === 0"
+          >
+            <i class="fa-solid fa-angles-left"></i>
+          </a>
+        </li>
+        <li class="page-item">
+          <a
+            (click)="goToPreviousPage()"
+            class="page-link"
+            href="javascript:void(0)"
+            aria-label="Previous"
+            [class.disabled]="page === 0"
+          >
+            <i class="fa-solid fa-angle-left"></i>
+          </a>
+        </li>
+        <li
+          class="page-item"
+          *ngFor="let pageIndex of pages"
+        >
+          <a
+            (click)="goToPage(pageIndex)"
+            class="page-link"
+            [class.active]="page === pageIndex"
+            href="javascript:void(0)"
+          >{{ pageIndex + 1 }}</a>
+        </li>
+        <li class="page-item">
+          <a
+            (click)="goToNextPage()"
+            class="page-link"
+            href="javascript:void(0)"
+            aria-label="Next"
+            [class.disabled]="isLastPage"
+          >
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
+        </li>
+        <li class="page-item">
+          <a
+            (click)="goToLastPage()"
+            class="page-link"
+            href="javascript:void(0)"
+            aria-label="Next"
+            [class.disabled]="isLastPage"
+          >
+            <i class="fa-solid fa-angles-right"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+</div>
