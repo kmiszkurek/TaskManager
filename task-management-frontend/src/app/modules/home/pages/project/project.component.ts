@@ -127,26 +127,24 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
   constructor(
     private projectService: ProjectService,
-    private searchService: SearchService,  // Inject SearchService
+    private searchService: SearchService,
     private router: Router
   ) {}
 
   ngOnInit() {
     this.findAllProjects();
 
-    // Subscribe to search term changes
     this.searchSubscription = this.searchService.searchTerm$.subscribe(({ prefix, term }) => {
       console.log(`Received prefix: ${prefix}, term: ${term}`);
       if (prefix === '#') {
         console.log('Filtering projects by term:', term);
-        this.filterProjects(term);  // Only filter when prefix is '#'
+        this.filterProjects(term);
       } else {
         console.log('Prefix is not #, showing all projects.');
         this.filteredProjects = this.projectResponse.content ?? [];
       }
     });
   }
-
 
   ngOnDestroy() {
     if (this.searchSubscription) {
@@ -164,7 +162,6 @@ export class ProjectComponent implements OnInit, OnDestroy {
         this.projectResponse = projects;
         this.filteredProjects = this.projectResponse.content ?? [];
 
-        // Handle pagination
         this.pages = Array(this.projectResponse.totalPages ?? 0).fill(0).map((x, i) => i);
         this.isLoading = false;
       },

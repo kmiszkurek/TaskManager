@@ -28,7 +28,7 @@
     style="width: 18rem;"
   >
     <div class="card-body">
-      <h5 class="card-title">{{ project.name ?? 'Unnamed Project' }}</h5> <!-- Safe check here -->
+      <h5 class="card-title">{{ project.name ?? 'Unnamed Project' }}</h5>
       <p class="card-text">Termin: {{ project.endDate | date:"dd.MM.yyyy" }}</p>
       <a [routerLink]="['/projects', project.id]" class="btn btn-primary">Show Projects</a>
     </div>

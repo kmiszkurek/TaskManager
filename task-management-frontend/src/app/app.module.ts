@@ -7,6 +7,8 @@ import {NgModule} from "@angular/core";
 import {LoginComponent} from "./pages/login/login.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {ActivateAccountComponent} from "./pages/activate-account/activate-account.component";
+import {FullCalendarModule} from "@fullcalendar/angular";
+
 
 @NgModule({
   declarations: [
@@ -20,10 +22,7 @@ import {ActivateAccountComponent} from "./pages/activate-account/activate-accoun
     LoginComponent,
     RegisterComponent,
     ActivateAccountComponent,
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    CodeInputModule
+    FullCalendarModule
   ],
   providers: [
     HttpClient

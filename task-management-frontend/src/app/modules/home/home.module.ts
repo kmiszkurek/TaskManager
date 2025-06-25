@@ -12,6 +12,8 @@ import {EditTaskComponent} from "./components/edit-task/edit-task.component";
 import {AssignTaskComponent} from "./components/assign-task/assign-task.component";
 import {CreateProjectComponent} from "./components/create-project/create-project.component";
 import {SearchComponent} from "../../services/search/search/search.component";
+import {CreateTaskComponent} from "./components/create-task/create-task.component";
+//import {CalendarComponent} from "./pages/calendar/calendar.component";
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import {SearchComponent} from "../../services/search/search/search.component";
     TaskCardComponent,
     AssignTaskComponent,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    CreateTaskComponent
+    //CalendarComponent
   ]
 })
 export class HomeModule { }

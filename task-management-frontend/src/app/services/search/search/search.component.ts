@@ -28,9 +28,6 @@ export class SearchComponent {
     console.log(`Setting prefix: ${prefix}`);
     this.searchPrefix = prefix;
     switch (prefix) {
-      case '@':
-        this.placeholderText = 'Search for user';
-        break;
       case '#':
         this.placeholderText = 'Search for project';
         break;

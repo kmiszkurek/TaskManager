@@ -12,6 +12,7 @@ import {EditTaskComponent} from "./components/edit-task/edit-task.component";
 import {AssignTaskComponent} from "./components/assign-task/assign-task.component";
 import {CreateProjectComponent} from "./components/create-project/create-project.component";
 import {SearchComponent} from "../../services/search/search/search.component";
+import {CreateTaskComponent} from "./components/create-task/create-task.component";
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
       { path: "edit-task/:id", component: EditTaskComponent, canActivate: [authGuard] },
       { path: "assign-task/:id", component: AssignTaskComponent, canActivate: [authGuard] },
       { path: "create-project", component: CreateProjectComponent, canActivate: [authGuard] },
+      { path: "create-task", component: CreateTaskComponent, canActivate: [authGuard] },
       { path: "search", component: SearchComponent, canActivate: [authGuard] }
     ]
   }
