@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>Create New Task</h2>
+
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <div class="form-group mt-3">
+      <label for="title">Task Title</label>
+      <input id="title" formControlName="title" type="text" class="form-control"/>
+      <div *ngIf="taskForm.controls['title'].invalid && taskForm.controls['title'].touched">
+        Title is required.
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="description">Description</label>
+      <textarea id="description" formControlName="description" class="form-control"></textarea>
+      <div *ngIf="taskForm.controls['description'].invalid && taskForm.controls['description'].touched">
+        Description is required.
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="dueDate">Due Date</label>
+      <input id="dueDate" formControlName="dueDate" type="date" class="form-control" />
+      <div *ngIf="taskForm.controls['dueDate'].invalid && taskForm.controls['dueDate'].touched">
+        Due Date is required.
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <label for="priority">Priority</label>
+      <input id="priority" formControlName="priority" type="?" class="form-control" />
+      <div *ngIf="taskForm.controls['priority'].invalid && taskForm.controls['priority'].touched">
+        Priority is required.
+      </div>
+    </div>
+
+    <button class="btn btn-success mt-3" type="submit" [disabled]="taskForm.invalid">Create Task</button>
+  </form>
+</div>
